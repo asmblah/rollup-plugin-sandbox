@@ -21,17 +21,13 @@ type ConfigOptions = {
 export default (configOptions: ConfigOptions = { globals: {} }) => {
     return {
         name: 'sandbox',
-        renderChunk(
-            code: string,
-            // chunk: RenderedChunk,
-            // options: NormalizedOutputOptions,
-            // meta: { chunks: Record<string, RenderedChunk> },
-        ): { code: string; map?: SourceMapInput } | string | null {
+        renderChunk(code: string): { code: string; map: SourceMapInput } {
             const magicString = new MagicString(code);
 
             magicString
                 .prepend(
-                    'if (typeof quarantiner !== "undefined") {quarantiner(function (parent, self, top, window) {with (self) {\n',
+                    'if (typeof quarantiner !== "undefined") {' +
+                        'quarantiner.quarantine(function (parent, self, top, window) {with (self) {\n',
                 )
                 .append(
                     `}}, ${JSON.stringify({ globals: configOptions.globals ?? {} })});} ` +

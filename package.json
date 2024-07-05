@@ -26,27 +26,33 @@
     "README.md"
   ],
   "scripts": {
-    "build": "rollup -c",
+    "build:prod": "vite build",
+    "build:dev": "vite build --mode=development",
     "build:clean": "rm -rf dist/*",
-    "mocha": "ts-mocha -r mocha-bootstrap --recursive 'test/integration/**/*Test.ts' 'test/unit/**/*Test.ts'",
-    "lint:eslint:check": "eslint '{src,test}/**/*.ts' --max-warnings=0",
-    "lint:eslint:fix": "eslint '{src,test}/**/*.ts' --fix",
+    "lint:eslint:check": "eslint '{src,test}/**/*.{ts,tsx}' '*.{js,jsx,mjs,mts,ts,tsx}' --max-warnings=0",
+    "lint:eslint:fix": "eslint '{src,test}/**/*.{ts,tsx}' '*.{js,jsx,mjs,mts,ts,tsx}' --fix",
     "lint:tsc:check": "tsc --noEmit",
-    "prepublishOnly": "npm test && npm run build:clean && npm run build",
-    "test": "npm run lint:eslint:check && npm run lint:tsc:check && npm run mocha"
+    "prepublishOnly": "npm test && npm run build:clean && npm run build:prod",
+    "test": "npm run lint:eslint:check && npm run lint:tsc:check && npm run build:dev && npm run vitest:ci",
+    "vitest:ci": "vitest run",
+    "vitest:watch": "vitest watch"
   },
   "devDependencies": {
     "@rollup/plugin-node-resolve": "^15.2.3",
     "@rollup/plugin-typescript": "^11.1.6",
-    "buildbelt": "^0.1.0",
-    "magic-string": "^0.30.10",
-    "quarantiner": "^0.1.0-alpha",
+    "@types/rollup-plugin-peer-deps-external": "^2.2.5",
+    "@vitest/browser": "^1.6.0",
+    "buildbelt": "^0.2.2",
+    "playwright": "^1.45.1",
     "rollup": "^4.18.0",
-    "rollup-plugin-peer-deps-external": "^2.2.4"
+    "rollup-plugin-peer-deps-external": "^2.2.4",
+    "terser": "^5.31.1",
+    "vite": "^5.3.3",
+    "vitest": "^1.6.0"
   },
   "peerDependencies": {
     "magic-string": "^0.30.10",
-    "quarantiner": "^0.1.0-alpha"
+    "quarantiner": "^0.1.0-alpha.3"
   },
   "engines": {
     "node": ">=8"

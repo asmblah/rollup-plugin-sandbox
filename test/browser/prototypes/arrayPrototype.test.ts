@@ -7,9 +7,7 @@
  * https://github.com/asmblah/rollup-plugin-sandbox/raw/main/MIT-LICENSE.txt
  */
 
-// import { expect } from 'chai';
-// import plugin from '../../../dist/plugin';
-// import { rollup } from 'rollup';
+import { describe, it } from 'vitest';
 
 describe.skip('Array.prototype isolation', () => {
     it('modifying Array.prototype should not affect the main window', async () => {
