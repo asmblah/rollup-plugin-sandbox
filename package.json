@@ -1,5 +1,5 @@
 {
-  "version": "0.1.0-alpha",
+  "version": "0.1.0-alpha.1",
   "name": "rollup-plugin-sandbox",
   "description": "Rollup plugin for isolating scripts",
   "keywords": [
