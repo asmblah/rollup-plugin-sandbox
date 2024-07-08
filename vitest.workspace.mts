@@ -40,7 +40,7 @@ export default defineWorkspace([
         extends: './vite.config.mts',
         test: {
             name: 'node',
-            include: ['test/{integrated,unit}/**/*.test.ts'],
+            include: ['test/{functional,integrated,unit}/**/*.test.ts'],
         },
     },
 ]);

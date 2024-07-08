@@ -1,0 +1,1 @@
+window.myValue = 'my value';
